@@ -84,7 +84,7 @@
     <aside class="main-sidebar sidebar-dark-primary">
       <!-- Brand Logo -->
       <a href="../../index3.html" class="brand-link">
-        <img :src="'http://localhost:8000/goggles.svg'" alt="LavueAdmin Logo" class="brand-image" style="opacity: .8">
+        <img :src="'http://192.168.1.238:8000/goggles.svg'" alt="LavueAdmin Logo" class="brand-image" style="opacity: .8">
         <span class="brand-text font-weight-light">{{ appName }}</span>
       </a>
 

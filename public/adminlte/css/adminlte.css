@@ -13346,6 +13346,7 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
 }
 
 #sidebar-overlay {
+    backdrop-filter: blur(3px);
   background-color: rgba(0, 0, 0, 0.1);
   bottom: 0;
   display: none;

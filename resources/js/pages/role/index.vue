@@ -110,7 +110,7 @@ export default {
     },
     async fetchRoles (page = 1) {
       this.loading = true
-      const data = await axios.get('http://localhost:8000/api/role?page=' + page, { headers: { Authorization: 'Bearer ' + Cookies.get('token') } })
+      const data = await axios.get('http://192.168.1.238:8000/api/role?page=' + page, { headers: { Authorization: 'Bearer ' + Cookies.get('token') } })
       this.roles = data.data
       this.loading = false
     }
