@@ -192,7 +192,6 @@ body {
 input {
   padding-left: 10px;
 }
-
 .AppForm .AppFormLeft a {
   color: #3a3e42;
 }
@@ -229,7 +228,6 @@ input:-webkit-autofill:active {
   background-size: cover;
   background-position: center;
 }
-
 .AppForm .AppFormRight:after {
   content: "";
   position: absolute;

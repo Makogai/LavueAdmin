@@ -1,5 +1,5 @@
 :root{
-    --sidebar-color: #264653;
+    --sidebar-color: rgba(38, 70, 83, 0.8);
     --sidebar-border: #315c6b;
     --sidebar-active-link: #e76f51;
 }

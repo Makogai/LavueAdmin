@@ -6,14 +6,16 @@
     'btn-loading': loading
   }" class="btn"
   >
+    <circle-svg v-if="loading" />
     <slot />
   </button>
 </template>
 
 <script>
+import CircleSvg from './CircleSvg'
 export default {
   name: 'VButton',
-
+  components: { CircleSvg },
   props: {
     type: {
       type: String,

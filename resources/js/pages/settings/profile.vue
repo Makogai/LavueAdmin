@@ -5,10 +5,18 @@
 
       <!-- Name -->
       <div class="form-group row">
-        <label class="col-md-3 col-form-label text-md-right">{{ $t('name') }}</label>
+        <label class="col-md-3 col-form-label text-md-right">{{ $t('first_name') }}</label>
         <div class="col-md-7">
-          <input v-model="form.name" :class="{ 'is-invalid': form.errors.has('name') }" class="form-control" type="text" name="name">
-          <has-error :form="form" field="name" />
+          <input v-model="form.first_name" :class="{ 'is-invalid': form.errors.has('first_name') }" class="form-control" type="text" name="first_name">
+          <has-error :form="form" field="first_name" />
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label text-md-right">{{ $t('last_name') }}</label>
+        <div class="col-md-7">
+          <input v-model="form.last_name" :class="{ 'is-invalid': form.errors.has('last_name') }" class="form-control" type="text" name="last_name">
+          <has-error :form="form" field="last_name" />
         </div>
       </div>
 
@@ -46,7 +54,8 @@ export default {
 
   data: () => ({
     form: new Form({
-      name: '',
+      first_name: '',
+      last_name: '',
       email: ''
     })
   }),

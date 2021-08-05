@@ -51,7 +51,7 @@
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <router-link to="/home" class="nav-link">Home</router-link>
+          <router-link to="/unused" class="nav-link">Unused</router-link>
         </li>
       </ul>
 
@@ -92,7 +92,7 @@
       <div class="sidebar">
 
         <!-- Sidebar Menu -->
-        <nav class="mt-2">
+        <nav class="mt-0">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
                  with font-awesome or any other icon font library -->
@@ -107,10 +107,10 @@
             </li>
 
             <li class="nav-item">
-              <router-link to="/settings" class="nav-link">
+              <router-link to="/roles" class="nav-link">
                 <i class="nav-icon fas fa-cog"></i>
                 <p>
-                  Settings
+                  Roles
                 </p>
               </router-link>
             </li>
@@ -160,5 +160,7 @@ export default {
   height: 2rem;
   margin: -.375rem 0;
 }
-
+a.nav-link{
+  width: 100%!important;
+}
 </style>

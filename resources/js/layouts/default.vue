@@ -6,19 +6,21 @@
     </aside>
     <div :class="$route.path === '/login' ? 'container' : 'content-wrapper pt-5'">
       <child />
-
     </div>
+    <Footer v-if="user"/>
   </div>
 </template>
 
 <script>
 import Navbar from '~/components/Navbar'
 import { mapGetters } from 'vuex'
+import Footer from '../components/Footer'
 
 export default {
   name: 'MainLayout',
 
   components: {
+    Footer,
     Navbar
   },
   computed: mapGetters({
