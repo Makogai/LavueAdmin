@@ -7,7 +7,7 @@
     <div :class="$route.path === '/login' ? 'container' : 'content-wrapper pt-5'">
       <child />
     </div>
-    <Footer v-if="user"/>
+    <Footer v-if="user" class="mt-4"/>
   </div>
 </template>
 

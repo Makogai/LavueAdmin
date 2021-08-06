@@ -7,7 +7,7 @@
         <div class="table-title">
           <div class="row">
             <div class="col-sm-12 col-lg-6">
-              <h2>Manage <b>Roles</b></h2>
+              <h2>Manage <b>Role</b></h2>
             </div>
             <div class="col-sm-12 col-lg-6 text-left mt-3 mt-lg-0">
               <a class="btn btn-success float-lg-right float-left " data-toggle="modal" href="#addEmployeeModal"><i class="material-icons"
@@ -30,7 +30,7 @@
             <td>{{role.id}}</td>
             <td>{{ role.name }}</td>
             <td>
-              <a class="edit" data-toggle="modal" @click.prevent="toggleModal(role)" href="#editEmployeeModal"><i class="material-icons"
+              <a class="edit" v-if="can('role_edit')" data-toggle="modal" @click.prevent="toggleModal(role)" href="#editEmployeeModal"><i class="material-icons"
                                                                                data-toggle="tooltip" title="Edit"
               >&#xE254;</i></a>
               <a class="delete" data-toggle="modal" @click.prevent="toggleModal(role)" href="#deleteEmployeeModal"><i class="material-icons"
@@ -66,6 +66,7 @@ import LoadingFull from '../../components/LoadingFull'
 import Edit from '../../components/role/edit'
 import Add from '../../components/role/add'
 import Delete from '../../components/role/delete'
+import perms from '../../perms';
 
 $(document).ready(function () {
   // Activate tooltip
@@ -110,7 +111,7 @@ export default {
     },
     async fetchRoles (page = 1) {
       this.loading = true
-      const data = await axios.get('http://192.168.1.238:8000/api/role?page=' + page, { headers: { Authorization: 'Bearer ' + Cookies.get('token') } })
+      const data = await axios.get('http://localhost:8000/api/role?page=' + page, { headers: { Authorization: 'Bearer ' + Cookies.get('token') } })
       this.roles = data.data
       this.loading = false
     }

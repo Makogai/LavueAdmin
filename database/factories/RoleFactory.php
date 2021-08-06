@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Role;
+use App\Models\Title;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class RoleFactory extends Factory
@@ -12,7 +12,7 @@ class RoleFactory extends Factory
      *
      * @var string
      */
-    protected $model = Role::class;
+    protected $model = Title::class;
 
     /**
      * Define the model's default state.

@@ -24,7 +24,11 @@ $config = [
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <title>{{ config('app.name') }}</title>
-
+  <script type="text/javascript">
+    window.Laravel = {
+      jsPermissions: {!! auth()->check()?auth()->user()->jsPermissions():null !!}
+    }
+  </script>
 {{--  <link rel="stylesheet" href="{{ mix('dist/css/app.css') }}">--}}
 </head>
 <body class="hold-transition sidebar-mini">

@@ -12,6 +12,7 @@ export const state = {
 export const getters = {
   user: state => state.user,
   token: state => state.token,
+  perms: state => state.perms,
   check: state => state.user !== null
 }
 
@@ -20,6 +21,11 @@ export const mutations = {
   [types.SAVE_TOKEN] (state, { token, remember }) {
     state.token = token
     Cookies.set('token', token, { expires: remember ? 365 : null })
+  },
+
+  [types.SAVE_PERMS] (state, { perms }) {
+    state.perms = perms
+    Cookies.set('perms', perms)
   },
 
   [types.FETCH_USER_SUCCESS] (state, { user }) {
@@ -47,6 +53,10 @@ export const mutations = {
 export const actions = {
   saveToken ({ commit, dispatch }, payload) {
     commit(types.SAVE_TOKEN, payload)
+  },
+
+  savePerms ({ commit, dispatch }, payload) {
+    commit(types.SAVE_PERMS, payload)
   },
 
   async fetchUser ({ commit }) {

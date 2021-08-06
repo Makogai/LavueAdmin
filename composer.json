@@ -6,12 +6,14 @@
     "type": "project",
     "require": {
         "php": "^7.3|^8.0",
+        "ahmedsaoud31/laravel-permission-to-vuejs": "dev-master",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.34",
         "laravel/tinker": "^2.6",
         "laravel/ui": "^3.2",
+        "spatie/laravel-permission": "^4.2",
         "tymon/jwt-auth": "^1.0.2"
     },
     "require-dev": {

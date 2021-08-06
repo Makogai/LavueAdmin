@@ -118,11 +118,19 @@ export default {
     async login () {
       // Submit the form.
       const { data } = await this.form.post('/api/login')
+      console.log(data)
 
       // Save the token.
       this.$store.dispatch('auth/saveToken', {
         token: data.token,
         remember: this.remember
+      })
+
+      // Get permissions
+      window.permsData = await axios.get('/api/roles', { headers: { Authorization: 'Bearer ' + data.token } })
+      console.log("perms:" + window.permsData);
+      this.$store.dispatch('auth/savePerms', {
+        perms: permsData,
       })
 
       // Fetch the user.

@@ -38,7 +38,7 @@ export default {
   }),
   methods: {
     async add () {
-      let response = await this.form.post('http://192.168.1.238:8000/api/role', { headers: { Authorization: 'Bearer ' + Cookies.get('token') } })
+      let response = await this.form.post('http://localhost:8000/api/role', { headers: { Authorization: 'Bearer ' + Cookies.get('token') } })
       Toast.fire({
         icon: 'success',
         title: response.data.message

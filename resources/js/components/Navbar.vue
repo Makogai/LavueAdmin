@@ -84,7 +84,7 @@
     <aside class="main-sidebar sidebar-dark-primary">
       <!-- Brand Logo -->
       <a href="../../index3.html" class="brand-link">
-        <img :src="'http://192.168.1.238:8000/goggles.svg'" alt="LavueAdmin Logo" class="brand-image" style="opacity: .8">
+        <img :src="BASE_URL + '/goggles.svg'" alt="LavueAdmin Logo" class="brand-image" style="opacity: .8">
         <span class="brand-text font-weight-light">{{ appName }}</span>
       </a>
 
@@ -106,7 +106,7 @@
               </router-link>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item" v-if="is('Admin')">
               <router-link to="/roles" class="nav-link">
                 <i class="nav-icon fas fa-cog"></i>
                 <p>
@@ -128,14 +128,16 @@
 <script>
 import { mapGetters } from 'vuex'
 import LocaleDropdown from './LocaleDropdown'
-
+const { BASE_URL } = require('../config')
+import LaravelPermissionToVueJS from 'laravel-permission-to-vuejs';
 export default {
   components: {
     LocaleDropdown
   },
 
   data: () => ({
-    appName: window.config.appName
+    appName: window.config.appName,
+    BASE_URL: BASE_URL,
   }),
 
   computed: mapGetters({

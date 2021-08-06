@@ -10,6 +10,7 @@
 
 <script>
 import Loading from './Loading'
+import LaravelPermissionToVueJS from 'laravel-permission-to-vuejs'
 
 // Load layout components dynamically.
 const requireContext = require.context('~/layouts', false, /.*\.vue$/)

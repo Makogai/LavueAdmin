@@ -19,7 +19,6 @@ class CreateUsersTable extends Migration
             $table->string('last_name');
             $table->string('name')->virtualAs("CONCAT(first_name, ' ', last_name)");
             $table->string('email')->unique();
-            $table->foreignId('role_id')->nullable()->constrained('roles');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->rememberToken();

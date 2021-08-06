@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\RoleRequest;
 use App\Http\Resources\RoleResource;
-use App\Models\Role;
+use App\Models\Title;
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use function GuzzleHttp\Promise\all;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
-class RoleController extends Controller
+class TitleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +23,14 @@ class RoleController extends Controller
      */
     public function index()
     {
-        return RoleResource::collection(Role::query()->paginate(5));
+//        Auth::user()->revokePermissionTo('role_view');
+//        $role = Role::create(['name' => 'Admin']);
+//        $permission = Permission::create(['name' => 'role_view']);
+//        Role::find(1)->givePermissionTo(1);
+//        Permission::find(1)->assignRole(1);
+//        User::find(3)->assignRole(1);
+        $this->authorize('role_view');
+        return RoleResource::collection(Title::query()->paginate(15));
     }
 
     /**
@@ -29,7 +40,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        return auth()->user()->jsPermissions();
     }
 
     /**
@@ -40,17 +51,18 @@ class RoleController extends Controller
      */
     public function store(RoleRequest $request): \Illuminate\Http\JsonResponse
     {
-        $role = Role::query()->create($request->validated());
+        $this->authorize('role_create');
+        $role = Title::query()->create($request->validated());
         return response()->json([$role, 'message' => "Successfully added a new role"], Response::HTTP_OK);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Role  $role
+     * @param  \App\Models\Title  $role
      * @return \Illuminate\Http\Response
      */
-    public function show(Role $role)
+    public function show(Title $role)
     {
         //
     }
@@ -58,10 +70,10 @@ class RoleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Role  $role
+     * @param  \App\Models\Title  $role
      * @return \Illuminate\Http\Response
      */
-    public function edit(Role $role)
+    public function edit(Title $role)
     {
         //
     }
@@ -70,11 +82,12 @@ class RoleController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Role  $role
+     * @param  \App\Models\Title  $role
      * @return \Illuminate\Http\Response
      */
-    public function update(RoleRequest $request, Role $role): JsonResponse
+    public function update(RoleRequest $request, Title $role): JsonResponse
     {
+        $this->authorize('role_update');
         $data = $request->validated();
         $role->fill($data);
         $role->save();
@@ -84,11 +97,12 @@ class RoleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Role  $role
+     * @param  \App\Models\Title  $role
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Role $role): JsonResponse
+    public function destroy(Title $role): JsonResponse
     {
+        $this->authorize('role_delete');
         $role->delete();
         return response()->json(['message' => 'Successfully deleted a role.'], Response::HTTP_OK);
     }

@@ -7,13 +7,20 @@ use App\Notifications\VerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Http\Response;
 use Illuminate\Notifications\Notifiable;
+use LaravelAndVueJS\Traits\LaravelPermissionToVueJS;
+use Spatie\Permission\Traits\HasRoles;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
 {
     use Notifiable,
-        HasFactory;
+        HasFactory,
+        LaravelPermissionToVueJS,
+        HasRoles;
+
+    protected $guard_name = 'api';
 
     /**
      * The attributes that are mass assignable.
@@ -26,6 +33,8 @@ class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
         'email',
         'password',
     ];
+
+
 
     /**
      * The attributes that should be hidden for arrays.
