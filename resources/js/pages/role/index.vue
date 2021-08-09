@@ -3,17 +3,18 @@
 
     <div class="container-fluid px-5">
       <div class="table-wrapper" style="position: relative;">
-        <loading-full v-if="loading" />
+        <loading-full v-if="loading"/>
         <div class="table-title">
           <div class="row">
             <div class="col-sm-12 col-lg-6">
               <h2>Manage <b>Role</b></h2>
             </div>
             <div class="col-sm-12 col-lg-6 text-left mt-3 mt-lg-0">
-              <a class="btn btn-success float-lg-right float-left " data-toggle="modal" href="#addEmployeeModal"><i class="material-icons"
+              <a v-if="can('role_create')" class="btn btn-success float-lg-right float-left " data-toggle="modal" href="#addEmployeeModal"><i
+                class="material-icons"
               >&#xE147;</i> <span>Add New Role</span></a>
-<!--              <a class="btn btn-danger" data-toggle="modal" href="#deleteEmployeeModal"><i class="material-icons">&#xE15C;</i>-->
-<!--                <span>Delete</span></a>-->
+              <!--              <a class="btn btn-danger" data-toggle="modal" href="#deleteEmployeeModal"><i class="material-icons">&#xE15C;</i>-->
+              <!--                <span>Delete</span></a>-->
             </div>
           </div>
         </div>
@@ -22,19 +23,22 @@
           <tr>
             <th>#</th>
             <th>Name</th>
-            <th>Actions</th>
+            <th v-if="can('role_update || role_delete')">Actions</th>
           </tr>
           </thead>
           <tbody>
           <tr v-for="role in roles.data" :key="role.id">
-            <td>{{role.id}}</td>
+            <td>{{ role.id }}</td>
             <td>{{ role.name }}</td>
-            <td>
-              <a class="edit" v-if="can('role_edit')" data-toggle="modal" @click.prevent="toggleModal(role)" href="#editEmployeeModal"><i class="material-icons"
-                                                                               data-toggle="tooltip" title="Edit"
+            <td v-if="can('role_update || role_delete')">
+              <a v-if="can('role_update')" class="edit" data-toggle="modal" href="#editEmployeeModal"
+                 @click.prevent="toggleModal(role)"
+              ><i class="material-icons"
+
               >&#xE254;</i></a>
-              <a class="delete" data-toggle="modal" @click.prevent="toggleModal(role)" href="#deleteEmployeeModal"><i class="material-icons"
-                                                                                   data-toggle="tooltip" title="Delete"
+              <a class="delete" v-if="can('role_delete')" data-toggle="modal" href="#deleteEmployeeModal" @click.prevent="toggleModal(role)"><i
+                class="material-icons"
+
               >&#xE872;</i></a>
             </td>
           </tr>
@@ -51,7 +55,7 @@
     <!-- Edit Modal HTML -->
 
     <!-- Edit Modal HTML -->
-<edit :role="role" @addedRole="addedRole"/>
+    <edit :role="role" @addedRole="addedRole"/>
     <add @addedRole="addedRole"/>
     <!-- Delete Modal HTML -->
     <delete :role="role" @addedRole="addedRole"/>
@@ -66,12 +70,10 @@ import LoadingFull from '../../components/LoadingFull'
 import Edit from '../../components/role/edit'
 import Add from '../../components/role/add'
 import Delete from '../../components/role/delete'
-import perms from '../../perms';
+import perms from '../../perms'
 
 $(document).ready(function () {
   // Activate tooltip
-  $('[data-toggle="tooltip"]').tooltip()
-
   // Select/Deselect checkboxes
   var checkbox = $('table tbody input[type="checkbox"]')
   $('#selectAll').click(function () {
@@ -93,20 +95,25 @@ $(document).ready(function () {
 })
 export default {
   name: 'index',
-  components: { Delete, Edit, LoadingFull, Add },
+  components: {
+    Delete,
+    Edit,
+    LoadingFull,
+    Add
+  },
   data: () => ({
     roles: {},
     loading: false,
     role: {},
   }),
   mounted () {
-    this.fetchRoles();
+    this.fetchRoles()
   },
   methods: {
     addedRole () {
-      this.fetchRoles();
+      this.fetchRoles()
     },
-    toggleModal(row) {
+    toggleModal (row) {
       this.role = row
     },
     async fetchRoles (page = 1) {
@@ -119,16 +126,18 @@ export default {
 }
 </script>
 
-<style >
+<style>
 .modal-backdrop {
   background-color: var(--sidebar-color);
 }
-.modal-backdrop.show{
-  opacity: 1!important;
+
+.modal-backdrop.show {
+  opacity: 1 !important;
   backdrop-filter: blur(20px);
 }
-.page-item.active .page-link{
-  background-color: var(--sidebar-active-link)!important;
+
+.page-item.active .page-link {
+  background-color: var(--sidebar-active-link) !important;
 }
 
 .table-responsive {
@@ -272,20 +281,20 @@ table.table .avatar {
 }
 
 .pagination li.active a, .pagination li.active a.page-link {
-  background: #03A9F4!important;
+  background: #03A9F4 !important;
 }
 
 .pagination li.active a:hover {
-  background: #0397d6!important;
+  background: #0397d6 !important;
 }
 
 .pagination li.disabled i {
-  color: #ccc!important;
+  color: #ccc !important;
 }
 
 .pagination li i {
-  font-size: 16px!important;
-  padding-top: 6px!important;
+  font-size: 16px !important;
+  padding-top: 6px !important;
 }
 
 .hint-text {

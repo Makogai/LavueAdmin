@@ -36,6 +36,8 @@
 	"verify_email": "potvrdi email",
 	"verify_email_address": "Poslali smo vam e -poruku s verifikacijskom vezom.",
 	"you_are_logged_in": "Prijavljeni ste!",
-	"your_info": "Your Info",
-	"your_password": "Vaša lozinka"
+	"your_info": "Vaše informacije",
+  "your_password": "Vaša lozinka",
+  "first_name": "Ime",
+  "last_name": "Prezime"
 }

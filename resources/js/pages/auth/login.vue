@@ -127,8 +127,8 @@ export default {
       })
 
       // Get permissions
-      window.permsData = await axios.get('/api/roles', { headers: { Authorization: 'Bearer ' + data.token } })
-      console.log("perms:" + window.permsData);
+      const { permsData } = await axios.get('/api/roles', { headers: { Authorization: 'Bearer ' + data.token } })
+      console.log("perms:" + permsData);
       this.$store.dispatch('auth/savePerms', {
         perms: permsData,
       })

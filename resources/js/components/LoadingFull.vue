@@ -23,7 +23,7 @@ export default {
   left: 0;
   height: 100%;
   width: 100%;
-  background-color: var(--sidebar-color);
+  background-color: #435d7d;
   opacity: 0.6;
   z-index: 1;
 }

@@ -62,8 +62,10 @@ export const actions = {
   async fetchUser ({ commit }) {
     try {
       const { data } = await axios.get('/api/user')
-
-      commit(types.FETCH_USER_SUCCESS, { user: data })
+      window.Laravel = {
+        jsPermissions: data.perms.original
+      }
+      commit(types.FETCH_USER_SUCCESS, { user: data.user })
     } catch (e) {
       commit(types.FETCH_USER_FAILURE)
     }

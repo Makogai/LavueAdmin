@@ -21,7 +21,10 @@ class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
         HasRoles;
 
     protected $guard_name = 'api';
-
+    public function jsPermissions()
+    {
+        return \response()->json($this->getPermissions());
+    }
     /**
      * The attributes that are mass assignable.
      *

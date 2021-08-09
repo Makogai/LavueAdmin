@@ -53,7 +53,13 @@
         <li class="nav-item d-none d-sm-inline-block">
           <router-link to="/unused" class="nav-link">Unused</router-link>
         </li>
+
+        <li class="nav-item">
+          <locale-dropdown />
+        </li>
       </ul>
+
+
 
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
@@ -106,7 +112,7 @@
               </router-link>
             </li>
 
-            <li class="nav-item" v-if="is('Admin')">
+            <li class="nav-item" v-if="can('role_view')">
               <router-link to="/roles" class="nav-link">
                 <i class="nav-icon fas fa-cog"></i>
                 <p>
@@ -124,12 +130,10 @@
 
   </div>
 </template>
-
 <script>
 import { mapGetters } from 'vuex'
 import LocaleDropdown from './LocaleDropdown'
 const { BASE_URL } = require('../config')
-import LaravelPermissionToVueJS from 'laravel-permission-to-vuejs';
 export default {
   components: {
     LocaleDropdown
